@@ -1,0 +1,5 @@
+MINIO_ROOT_USER=<root_username>
+MINIO_ROOT_PASSWORD=<root_password>
+MINIO_OPTS="--certs-dir=/minio/certs/ --console-address :9001"
+MINIO_VOLUMES="https://minio{1...3}.local:9000/minio/data{1...4}"
+MINIO_BROWSER_REDIRECT_URL=https://miniocluster.local:8000/minio/ui

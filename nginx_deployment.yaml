@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      ports:
+        - containerPort: 8000
+          hostPort: 8000
+      volumeMounts:
+        - mountPath: /etc/nginx/conf.d/minio_nginx.conf:Z
+          name: nexus_nginx_configuration
+        - mountPath: /etc/ssl/certs/:Z
+          name: nexus_nginx_ssl_certificates
+      resources: {}
+  volumes:
+    - name: nexus_nginx_configuration
+      hostPath:
+        path: nginx/minio_nginx.conf
+        type: File
+    - name: nexus_nginx_ssl_certificates
+      hostPath:
+        path: nginx/certs/
+        type: Directory
